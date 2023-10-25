@@ -35,13 +35,15 @@ class Author:
 
 @dataclass(unsafe_hash=True)
 class Commit:
-    branch: Branch
+    branch: Branch | None
+    repository: Repository
     author: Author
     message: str
     sha: str
 
-    def __init__(self, branch: Branch, **kwargs):
+    def __init__(self, repository: Repository, branch: Branch = None, **kwargs):
         self.sha = kwargs['sha']
         self.branch = branch
+        self.repository = repository
         self.author = Author(**kwargs['commit']['author'])
         self.message = kwargs['commit']['message']
