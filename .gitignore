@@ -1,4 +1,5 @@
 .env
+.fleet
 venv
 .idea
 __pycache__

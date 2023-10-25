@@ -17,6 +17,7 @@ async def main():
     commits = await get_organization_commits(ORGANIZATION)
     for commit in filter(ignore_merge_request, commits):
         counter[commit.author.email] += 1
+        print(commit.message)
             
     print(f'Прошедшее время: {time() - start}')
     print(f'Вот топ-{min(100, len(counter))}')
